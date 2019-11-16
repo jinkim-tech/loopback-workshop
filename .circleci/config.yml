@@ -3,9 +3,9 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:8.11
+      - image: circleci/node:11.13.0
 
-    working_directory: ~/repo
+    working_directory: ~/node-200-loopback-workshop
 
     steps:
       - checkout
@@ -23,12 +23,17 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
+        
       # run tests!
-      - run: yarn test
+      - run: 
+          command: yarn test
+          environment: 
+            NODE_ENV: production
+            ENV: production
+
   deploy:
     docker:
-      - image: circleci/node:8.11
+      - image: circleci/node:11.13.0
     steps:
       - checkout
       - run:
