@@ -10,15 +10,15 @@ server.listen(4444);
 describe('loopback server', function() {
   this.timeout(5000);
 
-  // it('responds to /', (done) => {
-  //   chai.request(server)
-  //     .get('/')
-  //     .end((err, res) => {
-  //       expect(err).not.exist;
-  //       expect(res).to.have.status(200);
-  //       done();
-  //     });
-  // });
+  it('responds to /', (done) => {
+    chai.request(server)
+      .get('/')
+      .end((err, res) => {
+        expect(err).not.exist;
+        expect(res).to.have.status(200);
+        done();
+      });
+  });
 
   // it('responds to /api/players', (done) => {
   //   chai.request(server)
